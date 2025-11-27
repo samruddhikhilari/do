@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram name="Page-1" id="6IxWHZ4EqiwW0PVHZcDx">
+    <mxGraphModel dx="1381" dy="808" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-24" value="" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;sketch=1;curveFitting=1;jiggle=2;fillColor=none;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="79" y="47" width="684" height="501" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-1" value="" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_N_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="366" y="243" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-2" value="" style="points=[[0.005,0.09,0],[0.08,0,0],[0.76,0.25,0],[1,0.92,0],[0.91,0.995,0],[0.57,0.995,0],[0.045,0.955,0],[0.005,0.43,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.3g_4g_indicator;fillColor=#005073;strokeColor=none;rotation=25;strokeWidth=0;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="464.9" y="266" width="31.1" height="31.1" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-8" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_Wireless.svg;" vertex="1" parent="1">
+          <mxGeometry x="169" y="86" width="124.63" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-13" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#b85450;fillColor=#f8cecc;gradientColor=#ea6b66;" vertex="1" parent="1">
+          <mxGeometry x="585" y="360.5" width="63" height="107" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-14" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.wifi;pointerEvents=1;direction=south;rotation=-15;" vertex="1" parent="1">
+          <mxGeometry x="656" y="351.5" width="59" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-15" value="&lt;b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 18px;&quot;&gt;Computer&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="577" y="193" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-16" value="&lt;b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 18px;&quot;&gt;Laptop&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="208" y="496" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-17" value="&lt;b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 18px;&quot;&gt;Computer&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="187" y="223" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-18" value="&lt;b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 18px;&quot;&gt;Mobile Phone&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="551" y="492.5" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-19" value="&lt;b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 18px;&quot;&gt;Access Point&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="385" y="387" width="121" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-22" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="538" y="78" width="113" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="JIkZfwe3_IpNQ5A7Weeo-23" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;shape=mxgraph.azure.laptop;pointerEvents=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+          <mxGeometry x="172" y="399" width="132" height="74" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
