@@ -1,0 +1,124 @@
+# Student Result Management System - Project Documentation
+
+## 1. Project Overview
+A comprehensive web-based application for managing student results with a focus on academic performance tracking and grade calculation. The system enforces strict validation rules for internal (MSE) and external (ESE) examination marks.
+
+## 2. System Architecture
+
+### 2.1 Frontend
+- **Framework**: React.js with Material-UI
+- **Key Features**:
+  - Responsive form for adding student results
+  - Real-time validation of marks
+  - Tabular display of student records
+  - Interactive user interface with feedback
+
+### 2.2 Backend
+- **Framework**: Spring Boot
+- **Database**: MongoDB
+- **Key Components**:
+  - RESTful API endpoints
+  - Business logic for grade calculation
+  - Data validation and processing
+
+## 3. Key Features
+
+### 3.1 Result Calculation
+- **MSE (Internal) Marks**: Minimum 30% required
+- **ESE (External) Marks**: Minimum 70% required
+- **Final Grade Calculation**:
+  - A++ (90% and above)
+  - A+ (80-89.99%)
+  - A (70-79.99%)
+  - B+ (60-69.99%)
+  - B (50-59.99%)
+  - C (40-49.99%)
+  - F (Below 40%)
+
+### 3.2 Data Model
+- **Student**:
+  - Personal Information (Name, Registration Number, Department)
+  - Subject-wise Marks (4 subjects)
+  - Calculated Fields (Total Marks, Grade)
+
+## 4. Technical Implementation
+
+### 4.1 Backend Structure
+```
+backend/
+├── src/main/java/com/vit/result/
+│   ├── controller/     # REST API endpoints
+│   ├── model/          # Data models (Student)
+│   ├── repository/     # MongoDB repositories
+│   ├── service/        # Business logic
+│   └── config/         # Application configuration
+└── src/main/resources/
+    └── application.properties  # Database and server config
+```
+
+### 4.2 Frontend Structure
+```
+frontend/
+├── public/             # Static files
+└── src/
+    ├── components/     # Reusable UI components
+    ├── services/       # API service calls
+    ├── App.js          # Main application component
+    └── index.js        # Application entry point
+```
+
+## 5. Validation Rules
+1. **MSE Marks**:
+   - Must be between 30% and 100%
+   - Weight: 30% of final score
+
+2. **ESE Marks**:
+   - Must be between 70% and 100%
+   - Weight: 70% of final score
+
+3. **Result Status**:
+   - If any subject's marks don't meet minimum requirements, the student receives an "I" (Incomplete) grade
+   - Final percentage is calculated as average of all subjects' weighted scores
+
+## 6. Technical Stack
+- **Frontend**: React, Material-UI, Axios
+- **Backend**: Spring Boot, Spring Data MongoDB
+- **Database**: MongoDB
+- **Build Tools**: Maven (Backend), npm/yarn (Frontend)
+
+## 7. Setup Instructions
+
+### 7.1 Prerequisites
+- Java JDK 11+
+- Node.js 14+
+- MongoDB 4.4+
+- Maven 3.6+
+
+### 7.2 Backend Setup
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+### 7.3 Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
+
+## 8. API Endpoints
+- `GET /api/students` - Get all student records
+- `POST /api/students` - Add new student result
+- `GET /api/students/{id}` - Get student by ID
+- `GET /api/students/regNo/{regNo}` - Get student by registration number
+
+## 9. Future Enhancements
+1. User authentication and authorization
+2. Role-based access control (Admin, Faculty, Student)
+3. Bulk upload of student results
+4. Report generation (PDF/Excel)
+5. Dashboard with analytics and statistics
+
+## 10. Contact
+For any queries or support, please contact the development team.

@@ -1,0 +1,6 @@
+#backend's exec cmd
+mvn spring-boot:run
+
+
+#frontend execution cmd
+npm start

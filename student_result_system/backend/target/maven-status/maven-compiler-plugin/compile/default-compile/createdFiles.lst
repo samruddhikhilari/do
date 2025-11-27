@@ -1,0 +1,5 @@
+com\vit\result\controller\ResultController.class
+com\vit\result\model\Student.class
+com\vit\result\ResultApplication.class
+com\vit\result\repository\StudentRepository.class
+com\vit\result\service\ResultCalculationService.class

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Course Projects</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .nav-pills {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-pills .nav-link {
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-color: #f1f3f5;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tab-pane {
+            padding: 30px;
+        }
+
+        .tab-pane h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .tab-pane h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .tab-pane p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .tab-pane ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab-pane li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tab-pane li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        h5 {
+            color: var(--primary-color);
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+
+        /* Animation for tab content */
+        .tab-pane.fade.show {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-pills {
+                padding: 10px;
+            }
+            
+            .nav-pills .nav-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .tab-pane {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Hover effect for the entire tab content */
+        .tab-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VIT Course Projects</h1>
+        
+        <!-- Nav Pills -->
+        <ul class="nav nav-pills mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="sdp-tab" data-bs-toggle="pill" data-bs-target="#sdp" type="button" role="tab" aria-controls="sdp" aria-selected="true">SDP</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="edi-tab" data-bs-toggle="pill" data-bs-target="#edi" type="button" role="tab" aria-controls="edi" aria-selected="false">EDI</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="dt-tab" data-bs-toggle="pill" data-bs-target="#dt" type="button" role="tab" aria-controls="dt" aria-selected="false">DT</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="course-tab" data-bs-toggle="pill" data-bs-target="#course" type="button" role="tab" aria-controls="course" aria-selected="false">Course Projects</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="myTabContent">
+            <!-- SDP Tab -->
+            <div class="tab-pane fade show active" id="sdp" role="tabpanel" aria-labelledby="sdp-tab">
+                <h3>Software Development Project (SDP)</h3>
+                <p>The Software Development Project (SDP) is a comprehensive course that focuses on the complete software development life cycle. Students work in teams to develop real-world software applications, following industry best practices and methodologies.</p>
+                <h5>Key Features:</h5>
+                <ul>
+                    <li>Team-based software development</li>
+                    <li>Requirement analysis and documentation</li>
+                    <li>Agile development methodologies</li>
+                    <li>Version control and collaboration</li>
+                    <li>Testing and deployment</li>
+                </ul>
+            </div>
+
+            <!-- EDI Tab -->
+            <div class="tab-pane fade" id="edi" role="tabpanel" aria-labelledby="edi-tab">
+                <h3>Engineering Design and Innovation (EDI)</h3>
+                <p>Engineering Design and Innovation focuses on developing creative solutions to real-world problems through systematic design thinking and innovation methodologies.</p>
+                <h5>Key Aspects:</h5>
+                <ul>
+                    <li>Design thinking process</li>
+                    <li>Prototyping and testing</li>
+                    <li>User-centered design</li>
+                    <li>Innovation management</li>
+                    <li>Project presentation and pitching</li>
+                </ul>
+            </div>
+
+            <!-- DT Tab -->
+            <div class="tab-pane fade" id="dt" role="tabpanel" aria-labelledby="dt-tab">
+                <h3>Design Thinking (DT)</h3>
+                <p>Design Thinking is a human-centered approach to innovation that draws from the designer's toolkit to integrate the needs of people, the possibilities of technology, and the requirements for business success.</p>
+                <h5>Core Principles:</h5>
+                <ul>
+                    <li>Empathy with users</li>
+                    <li>Problem definition</li>
+                    <li>Ideation and brainstorming</li>
+                    <li>Prototyping</li>
+                    <li>Testing and iteration</li>
+                </ul>
+            </div>
+
+            <!-- Course Projects Tab -->
+            <div class="tab-pane fade" id="course" role="tabpanel" aria-labelledby="course-tab">
+                <h3>Course Projects at VIT</h3>
+                <p>VIT offers a wide range of course projects across various disciplines, allowing students to apply theoretical knowledge to practical scenarios.</p>
+                <h5>Project Categories:</h5>
+                <ul>
+                    <li>Academic course projects</li>
+                    <li>Interdisciplinary projects</li>
+                    <li>Industry-sponsored projects</li>
+                    <li>Research-oriented projects</li>
+                    <li>Capstone projects</li>
+                </ul>
+                <p>These projects help students develop critical thinking, problem-solving, and project management skills essential for their professional careers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Initialize tooltips
+        $(function () {
+            // Enable all tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Add smooth scrolling to all links
+            $("a").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        window.location.hash = hash;
+                    });
+                }
+            });
+
+            // Add active class to nav links
+            $('.nav-link').on('click', function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Initialize the first tab
+            $('#myTab a[href="#sdp"]').tab('show');
+        });
+    </script>
+</body>
+</html>
