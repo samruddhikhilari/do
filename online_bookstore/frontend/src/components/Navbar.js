@@ -49,6 +49,13 @@ const Navbar = () => {
                 }}>
                     Catalog
                 </Link>
+                <Link to="/database" style={{
+                    color: 'white',
+                    textDecoration: 'none',
+                    margin: '0 10px'
+                }}>
+                    Database
+                </Link>
                 <Link to="/login" style={{
                     color: 'white',
                     textDecoration: 'none',

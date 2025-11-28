@@ -4,6 +4,6 @@ npm start
 
 cd backend
 npm install
-# Create a .env file with your database credentials
-# Run the database schema from database/schema.sql
 npm start
+
+mongo mongodb://localhost:27017/online_bookstore

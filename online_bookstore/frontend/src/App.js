@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Catalog from './pages/Catalog';
 import BookDetails from './pages/BookDetails';
+import DatabaseView from './pages/DatabaseView';
 import './App.css';
 
 // Set withCredentials to true for all axios requests
@@ -32,6 +33,7 @@ function App() {
                             }
                         />
                         <Route path="/book/:id" element={<BookDetails />} />
+                        <Route path="/database" element={<DatabaseView />} />
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </div>
