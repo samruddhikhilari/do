@@ -1,262 +1,101 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
-import {
-    Container,
-    Box,
-    Typography,
-    TextField,
-    Button,
-    Grid,
-    Link,
-    Divider,
-    IconButton,
-    InputAdornment,
-    Paper,
-    Alert,
-    Stack,
-    useTheme,
-    useMediaQuery,
-} from '@mui/material';
-import { Visibility, VisibilityOff, Google, Facebook } from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
-import AuthContext from '../context/auth/authContext';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../styles/Auth.css';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    maxWidth: 500,
-    margin: '0 auto',
-    boxShadow: theme.shadows[3],
-    borderRadius: theme.shape.borderRadius * 2,
-    [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(3),
-        boxShadow: 'none',
-    },
-}));
-
-const SocialButton = styled(Button)(({ theme }) => ({
-    textTransform: 'none',
-    padding: '10px 16px',
-    margin: theme.spacing(1, 0),
-    width: '100%',
-    justifyContent: 'flex-start',
-    '& .MuiButton-startIcon': {
-        marginRight: theme.spacing(1.5),
-    },
-}));
-
-const Login = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const navigate = useNavigate();
-    const location = useLocation();
-    const authContext = useContext(AuthContext);
-    const { login, isAuthenticated, error, clearErrors } = authContext;
-
+function Login() {
     const [formData, setFormData] = useState({
         email: '',
-        password: '',
-        showPassword: false,
+        password: ''
     });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const { email, password, showPassword } = formData;
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            const redirectTo = location.state?.from?.pathname || '/';
-            navigate(redirectTo);
-        }
-
-        if (error) {
-            // Handle error (e.g., show error message)
-            console.error(error);
-            clearErrors();
-        }
-        // eslint-disable-next-line
-    }, [isAuthenticated, error]);
+    const { email, password } = formData;
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value
         });
     };
 
-    const handleClickShowPassword = () => {
-        setFormData({
-            ...formData,
-            showPassword: !formData.showPassword,
-        });
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (email && password) {
-            login({ email, password });
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login',
+                { email, password },
+                { withCredentials: true } // This is important for sending/receiving cookies
+            );
+
+            // Redirect to home page on successful login
+            navigate('/');
+        } catch (err) {
+            setError(err.response?.data?.message || 'Login failed. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
-    const handleGoogleLogin = () => {
-        // Implement Google OAuth
-        console.log('Google login');
-    };
-
-    const handleFacebookLogin = () => {
-        // Implement Facebook OAuth
-        console.log('Facebook login');
-    };
-
     return (
-        <Container component="main" maxWidth="sm" sx={{ py: 8 }}>
-            <StyledPaper elevation={isMobile ? 0 : 3}>
-                <Box textAlign="center" mb={4}>
-                    <Typography component="h1" variant="h4" fontWeight="bold" color="primary">
-                        Welcome Back
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" mt={1}>
-                        Sign in to access your account
-                    </Typography>
-                </Box>
+        <div className="auth-container">
+            <div className="auth-card">
+                <h2>Login to Your Account</h2>
 
-                {error && (
-                    <Alert severity="error" sx={{ width: '100%', mb: 3 }}>
-                        {error}
-                    </Alert>
-                )}
+                {error && <div className="alert alert-danger">{error}</div>}
 
-                <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        value={email}
-                        onChange={handleChange}
-                        sx={{ mb: 2 }}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type={showPassword ? 'text' : 'password'}
-                        id="password"
-                        autoComplete="current-password"
-                        value={password}
-                        onChange={handleChange}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, mb: 2 }}>
-                        <Link
-                            component={RouterLink}
-                            to="/forgot-password"
-                            variant="body2"
-                            color="primary"
-                            underline="hover"
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={handleChange}
+                            required
+                            className="form-control"
+                            placeholder="Enter your email"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChange}
+                            required
+                            minLength="6"
+                            className="form-control"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <button
+                            type="submit"
+                            className="btn btn-primary btn-block"
+                            disabled={loading}
                         >
-                            Forgot password?
-                        </Link>
-                    </Box>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        sx={{ mt: 2, py: 1.5, fontSize: '1rem' }}
-                    >
-                        Sign In
-                    </Button>
-                </Box>
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
+                    </div>
+                </form>
 
-                <Box width="100%" mt={3} mb={2}>
-                    <Divider sx={{ position: 'relative' }}>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            sx={{
-                                position: 'absolute',
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                backgroundColor: 'background.paper',
-                                px: 2,
-                            }}
-                        >
-                            OR CONTINUE WITH
-                        </Typography>
-                    </Divider>
-                </Box>
-
-                <Stack spacing={2} width="100%" mt={2} mb={3}>
-                    <SocialButton
-                        variant="outlined"
-                        startIcon={<Google />}
-                        onClick={handleGoogleLogin}
-                        sx={{
-                            borderColor: 'text.secondary',
-                            '&:hover': {
-                                borderColor: 'text.primary',
-                                backgroundColor: 'action.hover',
-                            },
-                        }}
-                    >
-                        Sign in with Google
-                    </SocialButton>
-                    <SocialButton
-                        variant="outlined"
-                        startIcon={<Facebook color="primary" />}
-                        onClick={handleFacebookLogin}
-                        sx={{
-                            borderColor: 'text.secondary',
-                            '&:hover': {
-                                borderColor: 'text.primary',
-                                backgroundColor: 'action.hover',
-                            },
-                        }}
-                    >
-                        Sign in with Facebook
-                    </SocialButton>
-                </Stack>
-
-                <Box textAlign="center" mt={2}>
-                    <Typography variant="body2" color="textSecondary">
-                        Don't have an account?{' '}
-                        <Link
-                            component={RouterLink}
-                            to="/register"
-                            color="primary"
-                            underline="hover"
-                            fontWeight="medium"
-                        >
-                            Sign up
-                        </Link>
-                    </Typography>
-                </Box>
-            </StyledPaper>
-        </Container>
+                <div className="auth-footer">
+                    <p>Don't have an account? <Link to="/register">Register here</Link></p>
+                    <p><Link to="/forgot-password">Forgot your password?</Link></p>
+                </div>
+            </div>
+        </div>
     );
-};
+}
 
 export default Login;

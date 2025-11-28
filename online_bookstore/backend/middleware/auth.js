@@ -1,49 +1,48 @@
-const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
 
-// Protect routes
-exports.protect = async (req, res, next) => {
-    let token;
-
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
-        // Set token from Bearer token in header
-        token = req.headers.authorization.split(' ')[1];
+// Simple session-based authentication middleware
+exports.requireAuth = (req, res, next) => {
+    if (!req.session || !req.session.userId) {
+        return res.status(401).json({ message: 'Not authenticated' });
     }
-    // Set token from cookie
-    else if (req.cookies.token) {
-        token = req.cookies.token;
+    next();
+};
+
+// Middleware to check if user is admin
+exports.requireAdmin = (req, res, next) => {
+    if (!req.session || !req.session.userId) {
+        return res.status(401).json({ message: 'Not authenticated' });
     }
 
-    // Make sure token exists
-    if (!token) {
-        return next(new ErrorResponse('Not authorized to access this route', 401));
-    }
+    User.findById(req.session.userId)
+        .then(user => {
+            if (!user || user.role !== 'admin') {
+                return res.status(403).json({ message: 'Not authorized as an admin' });
+            }
+            req.user = user;
+            next();
+        })
+        .catch(err => {
+            console.error('Admin check error:', err);
+            res.status(500).json({ message: 'Server error during admin check' });
+        });
+};
 
-    try {
-        // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await User.findById(decoded.id);
+// Middleware to check if user is logged in (optional)
+exports.optionalAuth = (req, res, next) => {
+    if (req.session && req.session.userId) {
+        User.findById(req.session.userId)
+            .then(user => {
+                if (user) {
+                    req.user = user;
+                }
+                next();
+            })
+            .catch(() => next());
+    } else {
         next();
-    } catch (err) {
-        return next(new ErrorResponse('Not authorized to access this route', 401));
     }
 };
 
-// Grant access to specific roles
-exports.authorize = (...roles) => {
-    return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
-            return next(
-                new ErrorResponse(
-                    `User role ${req.user.role} is not authorized to access this route`,
-                    403
-                )
-            );
-        }
-        next();
-    };
-};
+// The middleware functions are already exported individually at the top
+// using exports.functionName

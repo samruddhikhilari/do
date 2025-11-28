@@ -3,55 +3,30 @@ const mongoose = require('mongoose');
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Please add a title'],
-        trim: true,
-        maxlength: [100, 'Title cannot be more than 100 characters']
+        required: true,
+        trim: true
     },
     author: {
         type: String,
-        required: [true, 'Please add an author'],
+        required: true,
         trim: true
     },
     description: {
         type: String,
-        required: [true, 'Please add a description'],
-        maxlength: [2000, 'Description cannot be more than 2000 characters']
+        trim: true
     },
     price: {
         type: Number,
-        required: [true, 'Please add a price'],
-        min: [0, 'Price must be a positive number']
+        required: true,
+        min: 0
+    },
+    image_url: {
+        type: String,
+        trim: true
     },
     category: {
         type: String,
-        required: [true, 'Please add a category'],
-        enum: [
-            'Fiction',
-            'Non-Fiction',
-            'Science',
-            'Technology',
-            'Biography',
-            'History',
-            'Fantasy',
-            'Romance',
-            'Mystery',
-            'Self-Help'
-        ]
-    },
-    coverImage: {
-        type: String,
-        default: 'no-photo.jpg'
-    },
-    stock: {
-        type: Number,
-        required: true,
-        default: 0,
-        min: [0, 'Stock cannot be negative']
-    },
-    averageRating: {
-        type: Number,
-        min: [1, 'Rating must be at least 1'],
-        max: [5, 'Rating cannot be more than 5']
+        trim: true
     },
     createdAt: {
         type: Date,
@@ -59,10 +34,6 @@ const bookSchema = new mongoose.Schema({
     }
 });
 
-// Create book slug from the title
-bookSchema.pre('save', function (next) {
-    this.slug = this.title.toLowerCase().split(' ').join('-');
-    next();
-});
+const Book = mongoose.model('Book', bookSchema);
 
-module.exports = mongoose.model('Book', bookSchema);
+module.exports = Book;
