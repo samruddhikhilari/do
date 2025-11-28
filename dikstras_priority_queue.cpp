@@ -65,3 +65,21 @@ int main() {
     return 0;
 }
 
+/*
+$ .\dijkstra
+Enter number of nodes and edges: 5 7
+Enter edges in the format: u v weight
+0 1 4
+0 2 2
+1 2 1
+1 3 5
+2 3 8
+2 4 10
+3 4 2
+Enter starting node: 0
+*/
+
+/*
+g++ dikstras_priority_queue.cpp -o dijkstra
+.\dijkstra
+*/
